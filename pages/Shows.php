@@ -1,5 +1,4 @@
 <?php include "../util/Database.php";
-    include "../util/Sp.php";
     $d = new Database();
     $d->connect();
     $result = $d->query("SELECT id, Name FROM rstg.productions ORDER BY ReleaseDate DESC");

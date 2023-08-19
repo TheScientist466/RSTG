@@ -9,7 +9,7 @@ class Database {
     private $lastResult;
 
     public function __construct() {
-        $this->server = 'localhost';
+        $this->server = '192.168.29.52:3306';
         $this->username = "ivan";
         $this->password = "2345";
         $this->lastResult = NULL;
