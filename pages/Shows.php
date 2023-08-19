@@ -23,7 +23,10 @@
         }
     }
     $posterPath = '../res/Poster/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
+    $backdropPath = '../res/Backdrop/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
     $posterPath = '"' . (file_exists($posterPath) ? $posterPath : '../res/Poster/not-found.gif') . '"';
+    $backdropPath = (file_exists($backdropPath) ? $backdropPath : '../res/Poster/not-found.gif');
+    
 ?>
 
 <html>
@@ -32,42 +35,43 @@
         <link rel="stylesheet" href="../global/CSS/primary.css">
     </head>
     <body>
-        <form action="./Shows.php" method="post">
-            Production : 
-            <select id="Pr" name="Pr">
-                <?php 
-                    if($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            echo '<option value=' . $row["id"] . '>' . $row["Name"] . '</option>';
-                        }
-                    }
-                ?>
-            </select><br>
-            <input type="submit">
-        </form>
-
-        
 
         <div class="full">
-            <div class="back" style="background-image: url(../res/Latest_Prod_backdrop.JPG);"></div>
-            <div class="blur panel mid center">
-                <div class="panel-title-container">
-                    <h1 class="panel-title">Production</h1>
-                </div>
-                <div class="panel-content">
-                    <div class="mid latest-prod-img-container">
-                        <a href= <?php echo $posterPath; ?>>
-                            <img title="Click to expand" src= <?php echo $posterPath; ?>  alt="Production Poster">
-                        </a>
+            <div class="back" <?php echo 'style="background-image: url(' . $backdropPath . ');"' ?>></div>
+            
+            <form action="./Shows.php" method="post">
+                Production : 
+                <select id="Pr" name="Pr">
+                    <?php 
+                        if($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo '<option value=' . $row["id"] . '>' . $row["Name"] . '</option>';
+                            }
+                        }
+                    ?>
+                </select><br>
+                <input type="submit">
+            </form>
+            <div style="postion: absolute; height: 100%; width: 100%;">
+                <div class="blur panel mid center">
+                    <div class="panel-title-container">
+                        <h1 class="panel-title">Production</h1>
                     </div>
-                    
-                    <div class="prod-text-container">
-                        <p>
-                            <span class="des">Name: </span><?php echo $nameRes; ?><br><br>
-                            <span class="des">Director: </span><?php echo $dirRes; ?><br><br>
-                            <span class="des">Writer: </span><?php echo $wriRes; ?><br><br>
-                            <span class="des">Released on: </span><?php echo $relDateRes; ?><br><br>
-                        </p>
+                    <div class="panel-content">
+                        <div class="mid latest-prod-img-container">
+                            <a href= <?php echo $posterPath; ?>>
+                                <img title="Click to expand" src= <?php echo $posterPath; ?>  alt="Production Poster">
+                            </a>
+                        </div>
+                        
+                        <div class="prod-text-container">
+                            <p>
+                                <span class="des">Name: </span><?php echo $nameRes; ?><br><br>
+                                <span class="des">Director: </span><?php echo $dirRes; ?><br><br>
+                                <span class="des">Writer: </span><?php echo $wriRes; ?><br><br>
+                                <span class="des">Released on: </span><?php echo $relDateRes; ?><br><br>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

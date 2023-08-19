@@ -12,7 +12,7 @@
                     <a class="link" href="#">Home</a>
                     <a class="link" href="./AboutUs.html">About Us</a>
                     <a class="link" href="#">Gallery</a>
-                    <a class="link" href="./pages/Shows.php">Shows</a>
+                    <a class="link" href="./pages/Shows.php">Productions</a>
                 </div>
             </div>
         </div>
