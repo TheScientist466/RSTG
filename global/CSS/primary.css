@@ -1,13 +1,57 @@
+html {
+    overflow: scroll;
+}
 
 body {
     margin: 0;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: "Josefin Sans", sans-serif;
+}
+
+h2 {
+    font-family: "Josefin Sans", sans-serif;
+}
+
+h3 {
+    font-family: "Josefin Sans", sans-serif;
+}
+
+div {
+    overflow: hidden;
+}
+
+img {
+    overflow: hidden;
+}
+
+.blur {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mid {
+    position: relative;
+    width: 100%;
+    height:40vh;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.center {
+    margin: auto;
+}
+
+.full {
+    width: 100vw;
+    height: 100vh;
 }
 
 .navbar-container {
     width: 100%;
-    height: 15vh;
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.5);
+    height: 10vh;
     margin: 0;
     position: fixed;
     z-index: 1;
@@ -59,6 +103,10 @@ body {
     position: absolute;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .p-image {
@@ -72,7 +120,14 @@ body {
     height: 100vh;
 }
 
-h1 {
+.panel {
+    width: 75%;
+    height: 75%;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+#main-heading {
     font-family: "Josefin Sans", sans-serif;
     font-size: 128px;
     color: white;
@@ -80,4 +135,111 @@ h1 {
     padding-left: 50px;
     position: absolute;
     bottom: 0;
+}
+
+.panel-title-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.panel-title {
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 32px;
+    color: white;
+}
+
+.panel-content {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    bottom: 0;
+    display: flex;
+}
+
+.what-we-do-container {
+    height: 60vh;
+    background-color: #eeeeee;
+    overflow: hidden;
+    position: relative;
+}
+
+.what-we-do-title {
+    text-align: center;
+}
+
+.what-we-do-content {
+    display: flex;
+}
+
+.what-we-do {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+}
+
+.what-we-do div {
+    text-align: center;
+}
+
+.what-we-do div h2 {
+    text-align: center;
+}
+
+.what-we-do div img {
+    aspect-ratio: 1/1;
+    max-height: 70%;
+    max-width: calc(100% / 3);
+
+}
+
+div .latest-prod-img-container {
+
+    height: 90%;
+    width: 40%;
+    border-radius: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.latest-prod-img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.prod-text-container {
+    width: 100%;
+}
+
+.prod-text-container p {
+    font-family: "Josefin Sans light", sans-serif;
+    font-size: 24px;
+    padding-right: 50px;
+    color: white;
+    text-overflow: ellipsis;
+}
+
+.prod-text-container p .des {
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.footer {
+    width: 100%;
+    height: 30vh;
+    background-color: #070707;
+}
+
+.social-media-container {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-media {
+    width: 5vw;
 }
