@@ -1,3 +1,30 @@
+<?php include "util/Database.php";
+    $d = new Database();
+    $d->connect();
+    $result = $d->query("SELECT id, Name, Director, Writer, ReleaseDate FROM rstg.productions ORDER BY ReleaseDate DESC");
+
+    $nameRes = "No Record";
+    $dirRes  = "No Record"; 
+    $wriRes = "No Record";
+    $relDateRes = "No Record"; 
+
+    $pResult = $result;
+    if($pResult->num_rows > 0) {
+        $pRow = $pResult->fetch_assoc();
+        $nameRes = $pRow["Name"] == NULL ? "No Record" : $pRow["Name"];
+        $relDateRes = $pRow["ReleaseDate"] == NULL ? "No Record" : $pRow["ReleaseDate"];
+        if($pRow["Director"] != NULL)
+            $dirRes = $d->query("SELECT Name FROM rstg.people WHERE ID=" . $pRow["Director"])->fetch_assoc()["Name"];
+        if($pRow["Director"] != NULL)
+            $wriRes = $d->query("SELECT Name FROM rstg.people WHERE ID=" . $pRow["Writer"])->fetch_assoc()["Name"];
+    }
+    $posterPath = './res/Poster/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
+    $backdropPath = './res/Backdrop/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
+    $posterPath = '"' . (file_exists($posterPath) ? $posterPath : './res/Poster/not-found.gif') . '"';
+    $backdropPath = (file_exists($backdropPath) ? $backdropPath : './res/Poster/not-found.gif');
+    
+?>
+
 <html>
     <head>
         <link rel="stylesheet" href="./global/CSS/primary.css">
@@ -59,27 +86,17 @@
                 </div>
                 <div class="panel-content">
                     <div class="mid latest-prod-img-container">
-                        <a href="./res/Latest_Prod_poster.png">
-                            <img title="Click to expand" src="./res/Latest_Prod_poster.png" alt="Production Poster">
+                        <a href= <?php echo $posterPath; ?>>
+                            <img title="Click to expand" src= <?php echo $posterPath; ?>  alt="Production Poster">
                         </a>
                     </div>
                     
                     <div class="prod-text-container">
                         <p>
-                            <span class="des">Name:</span> Lorem Ipsum<br><br>
-                            <span class="des">Synopsis:</span> Lorem ipsum dolor sit amet, 
-                            consectetur adipiscing elit, sed do 
-                            eiusmod tempor incididunt ut labore et 
-                            dolore magna aliqua. Ut enim ad minim veniam, 
-                            quis nostrud exercitation ullamco laboris nisi 
-                            ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit 
-                            in voluptate velit esse cillum dolore eu 
-                            fugiat nulla pariatur. Excepteur sint occaecat 
-                            cupidatat non proident, sunt in culpa qui officia 
-                            deserunt mollit anim id est laborum.<br><br>
-                            <span class="des">Director:</span> Lorem Ipsum<br><br>
-                            <span class="des">Cast & Crew:</span> Lorem Ipsum,  Lorem Ipsum, Lorem Ipsum, Lorem Ipsum<br><br>
+                            <span class="des">Name:</span> <?php echo $nameRes; ?><br><br>
+                            <span class="des">Director:</span> <?php echo $dirRes; ?><br><br>
+                            <span class="des">Playwright:</span> <?php echo $wriRes; ?><br><br>
+                            <span class="des">Release Date:</span> <?php echo $relDateRes; ?><br><br>
                         </p>
                     </div>
                 </div>

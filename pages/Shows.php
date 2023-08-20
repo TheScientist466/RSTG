@@ -53,7 +53,7 @@
                 <input type="submit">
             </form>
             <div style="postion: absolute; height: 100%; width: 100%;">
-                <div class="blur panel mid center">
+                <div class="blur panel center">
                     <div class="panel-title-container">
                         <h1 class="panel-title">Production</h1>
                     </div>
