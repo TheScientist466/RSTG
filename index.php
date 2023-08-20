@@ -21,8 +21,9 @@
     $posterPath = './res/Poster/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
     $backdropPath = './res/Backdrop/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
     $posterPath = '"' . (file_exists($posterPath) ? $posterPath : './res/Poster/not-found.gif') . '"';
-    $backdropPath = (file_exists($backdropPath) ? $backdropPath : './res/Poster/not-found.gif');
-    
+    $backdropPath = (file_exists($backdropPath) ? $backdropPath : './res/Backdrop/not-found.jpg');
+    $homePath = './res/Backdrop/bhorer-aashay.png';
+    $homePath = (file_exists($homePath) ? $homePath : './res/Backdrop/not-found.jpg');
 ?>
 
 <html>
@@ -46,7 +47,7 @@
         <!/navbar>
 
         <!s1>
-        <div class="back" style="background-image: url(./res/IMG_1696.JPG);"></div>
+        <div class="back" <?php echo 'style="background-image: url(' . $homePath . ');"' ?>></div>
         <div class="full-t">
             <h1 id="main-heading">Immerse yourself in the world of theatre</h1>
         </div>
@@ -79,7 +80,7 @@
 
         <!s2>
         <div class="full">
-            <div class="back" style="background-image: url(./res/Latest_Prod_backdrop.JPG);"></div>
+            <div class="back" <?php echo 'style="background-image: url(' . $backdropPath . ');"' ?>></div>
             <div class="blur panel mid center">
                 <div class="panel-title-container">
                     <h1 class="panel-title">Latest Production</h1>
@@ -106,13 +107,13 @@
         <div class="footer">
             <div class="social-media-container">
                 <a href="https://www.facebook.com/groups/1554074094884741/">
-                    <img class="social-media" src="./res/mask.png" alt="facebook">
+                    <img class="social-media" src="./res/social-media-icons/facebook.svg" alt="facebook">
                 </a>
-                <a href="#">
-                    <img class="social-media" src="./res/mask.png" alt="facebook">
+                <a href="https://www.instagram.com/rangsanskartheatregroup/">
+                    <img class="social-media" src="./res/social-media-icons/instagram.svg" alt="instagram">
                 </a>
-                <a href="#">
-                    <img class="social-media" src="./res/mask.png" alt="facebook">
+                <a href="https://www.youtube.com/channel/UC16U8N81lSOpqUfbRe9La6Q">
+                    <img class="social-media" src="./res/social-media-icons/youtube.svg" alt="youtube">
                 </a>
             </div>
         </div>

@@ -249,5 +249,6 @@ div .latest-prod-img-container {
 }
 
 .social-media {
-    width: 5vw;
+    width: 2.5vw;
+    padding: 50px;  
 }

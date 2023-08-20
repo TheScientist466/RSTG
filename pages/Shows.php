@@ -9,8 +9,8 @@
     $wriRes = "No Record";
     $relDateRes = "No Record"; 
 
-    if(array_key_exists("Pr", $_POST)) {
-        $pResult = $d->query("SELECT Name, Director, Writer, ReleaseDate FROM rstg.productions WHERE id=" . $_POST["Pr"]);
+    if(array_key_exists("Pr", $_GET)) {
+        $pResult = $d->query("SELECT Name, Director, Writer, ReleaseDate FROM rstg.productions WHERE id=" . $_GET["Pr"]);
         if($pResult->num_rows > 0) {
             $pRow = $pResult->fetch_assoc();
             $nameRes = $pRow["Name"] == NULL ? "No Record" : $pRow["Name"];
@@ -22,11 +22,11 @@
                 $wriRes = $d->query("SELECT Name FROM rstg.people WHERE ID=" . $pRow["Writer"])->fetch_assoc()["Name"];
         }
     }
+    
     $posterPath = '../res/Poster/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
     $backdropPath = '../res/Backdrop/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
     $posterPath = '"' . (file_exists($posterPath) ? $posterPath : '../res/Poster/not-found.gif') . '"';
-    $backdropPath = (file_exists($backdropPath) ? $backdropPath : '../res/Poster/not-found.gif');
-    
+    $backdropPath = (file_exists($backdropPath) ? $backdropPath : '../res/Backdrop/not-found.jpg');
 ?>
 
 <html>
@@ -39,7 +39,7 @@
         <div class="full">
             <div class="back" <?php echo 'style="background-image: url(' . $backdropPath . ');"' ?>></div>
             
-            <form action="./Shows.php" method="post">
+            <form action="./Shows.php" method="get">
                 Production : 
                 <select id="Pr" name="Pr">
                     <?php 
