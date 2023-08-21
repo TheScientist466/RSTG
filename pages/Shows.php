@@ -7,18 +7,22 @@
     $nameRes = "No Record";
     $dirRes  = "No Record"; 
     $wriRes = "No Record";
+    $langRes = "No Record";
     $relDateRes = "No Record"; 
 
     if(array_key_exists("Pr", $_GET)) {
-        $pResult = $d->query("SELECT Name, Director, Writer, ReleaseDate FROM rstg.productions WHERE id=" . $_GET["Pr"]);
+        $pResult = $d->query("SELECT Name, Language, Director, Writer, ReleaseDate FROM rstg.productions WHERE id=" . $_GET["Pr"]);
         if($pResult->num_rows > 0) {
             $pRow = $pResult->fetch_assoc();
             $nameRes = $pRow["Name"] == NULL ? "No Record" : $pRow["Name"];
             $titleStr = $pRow["Name"] == NULL ? "" : ' - ' . $pRow["Name"];
             $relDateRes = $pRow["ReleaseDate"] == NULL ? "No Record" : $pRow["ReleaseDate"];
+            if($pRow["Language"] != NULL) {
+                $langRes = $d->query("SELECT language FROM rstg.language WHERE code='" . $pRow["Language"] . "'")->fetch_assoc()["language"];
+            }
             if($pRow["Director"] != NULL)
                 $dirRes = $d->query("SELECT Name FROM rstg.people WHERE ID=" . $pRow["Director"])->fetch_assoc()["Name"];
-            if($pRow["Director"] != NULL)
+            if($pRow["Writer"] != NULL)
                 $wriRes = $d->query("SELECT Name FROM rstg.people WHERE ID=" . $pRow["Writer"])->fetch_assoc()["Name"];
         }
     }
@@ -67,6 +71,7 @@
                         <div class="prod-text-container">
                             <p>
                                 <span class="des">Name: </span><?php echo $nameRes; ?><br><br>
+                                <span class="des">Language: </span><?php echo $langRes; ?><br><br>
                                 <span class="des">Director: </span><?php echo $dirRes; ?><br><br>
                                 <span class="des">Writer: </span><?php echo $wriRes; ?><br><br>
                                 <span class="des">Released on: </span><?php echo $relDateRes; ?><br><br>

@@ -8,9 +8,11 @@
         <form>
             Name<br>
             <span id="nameSug"></span><br>
-            <input class="txtInp" type="text" name="name" onkeyup="showHint(this.value)"><br><br>
-            Director<br><input class="txtInp" type="text" name="dir"><br><br>
-            Writer<br><input class="txtInp" type="text" name="wri"><br><br>
+            <input class="txtInp" type="text" name="name" onkeyup="showHint(this.value, 'nameSug')"><br><br>
+            <span id="dirSug"></span><br>
+            Director<br><input class="txtInp" type="text" name="dir" onkeyup="showHint(this.value, 'dirSug')"><br><br>
+            <span id="wriSug"></span><br>
+            Writer<br><input class="txtInp" type="text" name="wri" onkeyup="showHint(this.value, 'wriSug')"><br><br>
             Release Date<br><br>
             <input type="submit" value="Add"> <input id="clearBtn" type="button" value="Clear">
         </form>
