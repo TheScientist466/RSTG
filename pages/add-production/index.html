@@ -3,19 +3,38 @@
 <html>
     <head>
         <title>Add New Production</title>
+        <style>
+            div {
+                display: flex;
+            }
+
+            div form {
+                padding: 25px;
+            }
+        </style>
     </head>
     <body>
-        <form>
-            Name<br>
-            <span id="nameSug"></span><br>
-            <input class="txtInp" type="text" name="name" onkeyup="showHint(this.value, 'nameSug')"><br><br>
-            <span id="dirSug"></span><br>
-            Director<br><input class="txtInp" type="text" name="dir" onkeyup="showHint(this.value, 'dirSug')"><br><br>
-            <span id="wriSug"></span><br>
-            Writer<br><input class="txtInp" type="text" name="wri" onkeyup="showHint(this.value, 'wriSug')"><br><br>
-            Release Date<br><br>
-            <input type="submit" value="Add"> <input id="clearBtn" type="button" value="Clear">
-        </form>
-        <script src="add-prod.js"></script>
+        <div>
+            <form>
+                <h3>Add Production</h3>
+                Name<br>
+                <span id="nameSug"></span><br>
+                <input class="txtInp" type="text" name="name" onkeyup="showHint(this.value, 'nameSug')"><br><br>
+                <span id="dirSug"></span><br>
+                Director<br><input class="txtInp" type="text" name="dir" onkeyup="showHint(this.value, 'dirSug')"><br><br>
+                <span id="wriSug"></span><br>
+                Writer<br><input class="txtInp" type="text" name="wri" onkeyup="showHint(this.value, 'wriSug')"><br><br>
+                Release Date<br><br>
+                <input type="submit" value="Add"> <input id="clearBtn" type="button" value="Clear">
+            </form>
+            <script src="add-prod.js"></script>
+
+            <form>
+                <h3>Add Person</h3>
+                Name<br>
+                <input class="txtInp" type="text" name="name"><br><br>
+                <input type="submit" value="Add">
+            </form>
+        </div>
     </body>    
 </html>

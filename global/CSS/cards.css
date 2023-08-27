@@ -1,0 +1,95 @@
+:root {
+	--card-height: 300px;
+	--card-incr-scale: 1.25;
+	--card-spacing: 0.66;
+}
+
+.festival-card-container {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.gallery {
+	width: 100%;
+}
+
+.gallery-container {
+	display: flex;
+	height: 100vh;
+	position: relative;
+	align-items: center;
+	transition: all 0.5 ease-in-out;
+}
+
+.gallery-item {
+	height: var(--card-height);
+	opacity: 0;
+	z-index: 0;
+	transition: all 0.4s ease;
+	transition: opacity 0 none;
+	border-radius: 5px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	aspect-ratio: 3/4;
+}
+
+.gallery-item-1 {
+	opacity: 1;
+	filter: blur(2px);
+	left: calc(50% - (var(--card-height) * var(--card-incr-scale) * var(--card-spacing)) - (var(--card-height) * var(--card-spacing)));
+	z-index: 0;
+}
+
+.gallery-item-2 {
+	opacity: 1;
+	left: calc(50% - (var(--card-height) * var(--card-incr-scale) * var(--card-spacing)));
+	filter: blur(1px);
+	height: calc(var(--card-height) * var(--card-incr-scale));
+	z-index: 1;
+}
+
+.gallery-item-3 {
+	opacity: 1;
+	left: 50%;
+	height: calc(var(--card-height) * var(--card-incr-scale) * var(--card-incr-scale));
+	z-index: 2;
+}
+
+.gallery-item-4 {
+	opacity: 1;
+	left: calc(50% + (var(--card-height) * var(--card-incr-scale) * var(--card-spacing)));
+	filter: blur(1px);
+	height: calc(var(--card-height) * var(--card-incr-scale));
+	z-index: 1;
+}
+
+.gallery-item-5 {
+	opacity: 1;
+	left: calc(50% + ((var(--card-height) * var(--card-incr-scale)) * var(--card-spacing)) + (var(--card-height) * var(--card-spacing)));
+	filter: blur(2px);
+	z-index: 0;
+}
+
+#festival-card-backdrop {
+	z-index: -3;
+	filter: blur(20px);
+}
+
+#festival-card-backdrop-overlay {
+	z-index: -2;
+	background-color: rgba(0, 0, 0, 0.75);
+	padding-top: 50px;
+}
+
+.button {
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+	font-size: 40px;
+	padding: 50px;
+	border: none;
+}

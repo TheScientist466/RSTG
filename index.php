@@ -1,34 +1,23 @@
-<?php include "util/Database.php";
-    $d = new Database();
-    $d->connect();
-    $result = $d->query("SELECT id, Name, Director, Writer, ReleaseDate FROM rstg.productions ORDER BY ReleaseDate DESC");
+<?php 
+    include 'util/Production.php';
+    $prod = new Production();
+    $prod->getLatest();
 
-    $nameRes = "No Record";
-    $dirRes  = "No Record"; 
-    $wriRes = "No Record";
-    $relDateRes = "No Record"; 
-
-    $pResult = $result;
-    if($pResult->num_rows > 0) {
-        $pRow = $pResult->fetch_assoc();
-        $nameRes = $pRow["Name"] == NULL ? "No Record" : $pRow["Name"];
-        $relDateRes = $pRow["ReleaseDate"] == NULL ? "No Record" : $pRow["ReleaseDate"];
-        if($pRow["Director"] != NULL)
-            $dirRes = $d->query("SELECT Name FROM rstg.people WHERE ID=" . $pRow["Director"])->fetch_assoc()["Name"];
-        if($pRow["Director"] != NULL)
-            $wriRes = $d->query("SELECT Name FROM rstg.people WHERE ID=" . $pRow["Writer"])->fetch_assoc()["Name"];
-    }
-    $posterPath = './res/Poster/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
-    $backdropPath = './res/Backdrop/' . strtolower(str_replace(' ', '-', $nameRes)) . '.png';
+    $posterPath = './res/Poster/' . strtolower(str_replace(' ', '-', $prod->name)) . '.png';
+    $backdropPath = './res/Backdrop/' . strtolower(str_replace(' ', '-', $prod->name)) . '.png';
     $posterPath = '"' . (file_exists($posterPath) ? $posterPath : './res/Poster/not-found.gif') . '"';
     $backdropPath = (file_exists($backdropPath) ? $backdropPath : './res/Backdrop/not-found.jpg');
     $homePath = './res/Backdrop/bhorer-aashay.png';
     $homePath = (file_exists($homePath) ? $homePath : './res/Backdrop/not-found.jpg');
 ?>
-
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="./global/CSS/primary.css">
+        <link rel="stylesheet" href="./global/CSS/navbar.css">
+        <link rel="stylesheet" href="./global/CSS/cards.css">
+        <link rel="stylesheet" href="./global/CSS/footer.css">
+        <link rel="icon" type="image/x-icon" href="./res/main-icon.ico">
         <title>Rang Sanskar Theatre Group, India</title>
     </head>
     <body>
@@ -40,12 +29,12 @@
                     <a class="link" href="#">Home</a>
                     <a class="link" href="./AboutUs.html">About Us</a>
                     <a class="link" href="#">Gallery</a>
-                    <a class="link" href="./pages/Shows.php">Productions</a>
+                    <a class="link" href="./pages/productions">Productions</a>
                 </div>
             </div>
         </div>
         <!/navbar>
-
+        
         <!s1>
         <div class="back" <?php echo 'style="background-image: url(' . $homePath . ');"' ?>></div>
         <div class="full-t">
@@ -94,15 +83,34 @@
                     
                     <div class="prod-text-container">
                         <p>
-                            <span class="des">Name:</span> <?php echo $nameRes; ?><br><br>
-                            <span class="des">Director:</span> <?php echo $dirRes; ?><br><br>
-                            <span class="des">Playwright:</span> <?php echo $wriRes; ?><br><br>
-                            <span class="des">Release Date:</span> <?php echo $relDateRes; ?><br><br>
+                            <span class="des">Name:</span> <?php echo $prod->name; ?><br><br>
+                            <span class="des">Director:</span> <?php echo $prod->dir; ?><br><br>
+                            <span class="des">Playwright:</span> <?php echo $prod->wri; ?><br><br>
+                            <span class="des">Release Date:</span> <?php echo $prod->relDate; ?><br><br>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="festival-card-backdrop" class="back"></div>
+        <div id="festival-card-backdrop-overlay" class="back"><h1 style="color: white;">Festivals</h1></div>
+        <div class="festival-card-container">
+            <input type="button" id="left-but" class="button" value="<">
+            <div class="gallery">
+                <div class="gallery-container">
+                    <img class="gallery-item gallery-item-1" src="./res/festival-cards/img_1.png">
+                    <img class="gallery-item gallery-item-2" src="./res/festival-cards/img_2.png">
+                    <img class="gallery-item gallery-item-3" src="./res/festival-cards/img_3.png">
+                    <img class="gallery-item gallery-item-4" src="./res/festival-cards/img_4.png">
+                    <img class="gallery-item gallery-item-5" src="./res/festival-cards/img_5.png">
+                    <img class="gallery-item" src="./res/festival-cards/img_6.png">
+                </div>
+            </div>
+            <input type="button" id="right-but" class="button" value=">">
+        </div>
+        
+        <script src="./global/js/cards.js"></script>
 
         <div class="footer">
             <div class="social-media-container">
