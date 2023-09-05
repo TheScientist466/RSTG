@@ -26,6 +26,13 @@ class Database {
         }
     }
 
+    public function connectWithAdminPasswd($psswd) {
+        $this->connection = new MySQLi($this->server, 'root', $psswd);
+        if($this->connection->connect_error) {
+            die("Connection failed : " . $this->connection->connect_error);
+        }
+    }
+
     public function query($str) {
         $res = $this->connection->query($str);
         $lastResult = $res;
